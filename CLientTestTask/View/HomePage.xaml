@@ -1,0 +1,27 @@
+﻿<Page x:Class="CLientTestTask.View.HomePage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:CLientTestTask.View"
+      xmlns:vm="clr-namespace:CLientTestTask.ViewModel"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="HomePage">
+     
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="120"></ColumnDefinition>
+            <ColumnDefinition></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <StackPanel Orientation="Vertical">
+            <Button Content="Запросить данные" Command="{Binding Path=GetItems}"></Button>
+            <Button Content="Создать\Обновить" Command="{Binding Path=ChangeVisibility}" />
+        </StackPanel>
+        <DataGrid Grid.Column="1" Visibility="{Binding Path=VisibilityOn , UpdateSourceTrigger=PropertyChanged}" 
+                  ItemsSource="{Binding Path=GetValues, UpdateSourceTrigger=PropertyChanged}"></DataGrid>
+        <Frame Grid.Column="1" Content="{Binding Path=EditGetPage, UpdateSourceTrigger=PropertyChanged}"   
+               Visibility="{Binding Path=VisibilityOff , UpdateSourceTrigger=PropertyChanged}"></Frame>
+    </Grid>
+</Page>
